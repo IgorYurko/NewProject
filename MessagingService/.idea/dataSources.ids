@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<component name="dataSourceStorage">
+  <data-source name="MySQL - @localhost" uuid="a461a51c-4152-4209-bfc4-fe79f627218d">
+    <database-info product="MySQL" version="5.6.24-log" jdbc-version="4.0" driver-name="MySQL Connector Java" driver-version="mysql-connector-java-5.1.35 ( Revision: 5fb9c5849535c13917c2cf9baaece6ef9693ef27 )">
+      <extra-name-characters>#@</extra-name-characters>
+      <identifier-quote-string>`</identifier-quote-string>
+    </database-info>
+    <case-sensitivity plain-identifiers="lower" quoted-identifiers="lower"/>
+    <schema name="" catalog="messaging_service_true"/>
+    <table name="category" schema="" catalog="messaging_service_true" type="TABLE">
+      <column name="id" sqlType="INT UNSIGNED" precision="10" scale="0" nullable="false" jdbcType="4" autoIncrement="true"/>
+      <column name="name" sqlType="VARCHAR" precision="200" scale="0" nullable="false" jdbcType="12"/>
+      <primary-key name="PRIMARY" columns="id"/>
+      <exported-key name="FK_posts_category" table="posts" schema="" catalog="messaging_service_true" columns="category_id"/>
+    </table>
+    <table name="messages" schema="" catalog="messaging_service_true" type="TABLE">
+      <column name="id" sqlType="INT UNSIGNED" precision="10" scale="0" nullable="false" jdbcType="4" autoIncrement="true"/>
+      <column name="message" sqlType="TEXT" precision="65535" scale="0" nullable="false" jdbcType="-1"/>
+      <column name="users_id" sqlType="INT UNSIGNED" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <column name="posts_id" sqlType="INT UNSIGNED" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <primary-key name="PRIMARY" columns="id"/>
+      <foreign-key name="FK__users" columns="users_id" ref-table="users" ref-schema="" ref-catalog="messaging_service_true" ref-columns="id" update-rule="0" delete-rule="0" deferrability="2"/>
+      <foreign-key name="FK_messages_posts" columns="posts_id" ref-table="posts" ref-schema="" ref-catalog="messaging_service_true" ref-columns="id" update-rule="0" delete-rule="0" deferrability="2"/>
+      <index name="FK__users" unique="false" columns="users_id"/>
+      <index name="FK_messages_posts" unique="false" columns="posts_id"/>
+    </table>
+    <table name="posts" schema="" catalog="messaging_service_true" type="TABLE">
+      <column name="id" sqlType="INT UNSIGNED" precision="10" scale="0" nullable="false" jdbcType="4" autoIncrement="true"/>
+      <column name="title" sqlType="VARCHAR" precision="200" scale="0" nullable="false" jdbcType="12"/>
+      <column name="description" sqlType="TEXT" precision="65535" scale="0" nullable="false" jdbcType="-1"/>
+      <column name="source" sqlType="VARCHAR" precision="200" scale="0" nullable="false" jdbcType="12"/>
+      <column name="datetime" sqlType="TIMESTAMP" precision="19" scale="0" nullable="false" jdbcType="93" def="Q1VSUkVOVF9USU1FU1RBTVA=" version="true"/>
+      <column name="category_id" sqlType="INT UNSIGNED" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <column name="users_id" sqlType="INT UNSIGNED" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <primary-key name="PRIMARY" columns="id"/>
+      <foreign-key name="FK_posts_category" columns="category_id" ref-table="category" ref-schema="" ref-catalog="messaging_service_true" ref-columns="id" update-rule="0" delete-rule="0" deferrability="2"/>
+      <foreign-key name="FK_posts_users" columns="users_id" ref-table="users" ref-schema="" ref-catalog="messaging_service_true" ref-columns="id" update-rule="0" delete-rule="0" deferrability="2"/>
+      <exported-key name="FK_messages_posts" table="messages" schema="" catalog="messaging_service_true" columns="posts_id"/>
+      <index name="FK_posts_category" unique="false" columns="category_id"/>
+      <index name="FK_posts_users" unique="false" columns="users_id"/>
+    </table>
+    <table name="users" schema="" catalog="messaging_service_true" type="TABLE">
+      <column name="id" sqlType="INT UNSIGNED" precision="10" scale="0" nullable="false" jdbcType="4" autoIncrement="true"/>
+      <column name="first_name" sqlType="VARCHAR" precision="50" scale="0" nullable="false" jdbcType="12"/>
+      <column name="last_name" sqlType="VARCHAR" precision="50" scale="0" nullable="false" jdbcType="12"/>
+      <column name="email" sqlType="VARCHAR" precision="50" scale="0" nullable="false" jdbcType="12"/>
+      <primary-key name="PRIMARY" columns="id"/>
+      <exported-key name="FK__users" table="messages" schema="" catalog="messaging_service_true" columns="users_id"/>
+      <exported-key name="FK_posts_users" table="posts" schema="" catalog="messaging_service_true" columns="users_id"/>
+    </table>
+  </data-source>
+</component>

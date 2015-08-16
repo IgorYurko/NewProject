@@ -1,0 +1,8 @@
+<component name="ArtifactManager">
+  <artifact type="war" name="messagin-service-spring-hibernate-core:war">
+    <output-path>$PROJECT_DIR$/target</output-path>
+    <root id="archive" name="messagin-service-spring-hibernate-core.war">
+      <element id="artifact" artifact-name="messagin-service-spring-hibernate-core:war exploded" />
+    </root>
+  </artifact>
+</component>
